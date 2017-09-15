@@ -15,8 +15,8 @@ const getGalleryResponseFailed = () => ({
 });
 
 export const getGalleryResponse = page => (dispatch) => {
-  axios.get(`https://api.imgur.com/3/gallery/hot/time/${page}.json`, {}).then((res) => {
-    dispatch(getGalleryResponseSucced(res.data));
+  axios.get(`https://api.imgur.com/3/gallery/hot/time/0.json?perPage=42&page=${page}`, {}).then((res) => {
+    dispatch(getGalleryResponseSucced(res.data.data));
   })
     .catch(() => {
       dispatch(getGalleryResponseFailed());
@@ -25,7 +25,8 @@ export const getGalleryResponse = page => (dispatch) => {
   dispatch({ type: 'GALLERY_START' });
 };
 
-export const actionUseInFuture = () => (
+export const changePage = page => (
   {
-    type: 'SOME_TYPE',
+    type: 'CHANGE_PAGE',
+    page,
   });

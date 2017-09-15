@@ -3,7 +3,6 @@ import ImgurImageElement from '../ImgurImageElement';
 
 class ImgurPostElement extends Component {
   render() {
-    console.log(this.props.item);
     return (
       <div >
         <div >{this.props.item.title}</div>
