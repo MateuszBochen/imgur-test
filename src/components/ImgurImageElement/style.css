@@ -1,0 +1,15 @@
+.imgNavButn{
+  position: absolute;
+
+}
+.imgNavButn.left{
+  left: 0px;
+}
+
+.imgNavButn.right{
+  right: 0px;
+}
+
+.imgurImageContainer {
+  position: relative;
+}
