@@ -36,6 +36,4 @@ const mapStateToProps = state => ({
   ...state.imgur,
 });
 
-const mapDispatchToProps = dispatch => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserTopPanel);
+export default connect(mapStateToProps)(UserTopPanel);

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Panel } from 'react-bootstrap';
 import ImgurImageElement from '../ImgurImageElement';
+import ImgurTagElements from '../ImgurTagElements';
 
 class ImgurPostElement extends Component {
   render() {
     return (
-      <div >
-        <div >{this.props.item.title}</div>
+      <Panel header={this.props.item.title} >
         <ImgurImageElement images={this.props.item.images} />
-        <hr />
-        <hr />
-      </div>
+        <ImgurTagElements tags={this.props.item.tags} />
+      </Panel>
     );
   }
 }

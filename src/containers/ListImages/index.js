@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col } from 'react-bootstrap';
-import { getGalleryResponse, changePage } from '../../actions/listImages';
+import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
+import { getGalleryResponse, getMoreGalleryResponse, changePage } from '../../actions/listImages';
 import ImgurPostElements from '../../components/ImgurPostElements';
 import getCurrentItems from '../../selectors/imgur';
 import './style.css';
@@ -9,12 +9,17 @@ import './style.css';
 class ListImages extends Component {
   constructor(props) {
     super(props);
-    this.props.loadImages(0);
+    this.props.loadImages(0, this.props.match.params.section || 'hot');
   }
-
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     this.pageHeight = document.documentElement.clientHeight;
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.match.params.section && nextProps.match.params.section !== this.props.section) {
+      this.props.loadImages(0, nextProps.match.params.section);
+    }
   }
 
   componentWillUnmount() {
@@ -25,23 +30,18 @@ class ListImages extends Component {
     const height = document.getElementById('posts-container').clientHeight;
     const scrollHeight = (event.srcElement.body.scrollTop + this.pageHeight) - 20;
     if (this.props.isLoading === false && scrollHeight >= height) {
-      // this.page = this.page + 1;
-
-      console.log('chce ladowac nowe', height);
       this.props.changePage(this.props.page + 1);
 
-      // preload
+      // preload - load more image before user scroll to the end
       if (this.props.page * this.props.perPage >= this.props.items.length - this.props.perPage) {
-        console.log('zaladuj nowe z api', this.props.imgurPage);
-        this.props.loadImages(this.props.imgurPage);
+        this.props.loadMoreImages(this.props.imgurPage, this.props.section);
       }
-
     }
   }
 
   showLoader = () => {
     if (this.props.isLoading === true) {
-      return <p>Loading</p>;
+      return <ProgressBar active now={100} />;
     }
 
     return '';
@@ -67,7 +67,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadImages: (page) => { dispatch(getGalleryResponse(page)); },
+  loadImages: (page, section) => { dispatch(getGalleryResponse(page, section)); },
+  loadMoreImages: (page, section) => { dispatch(getMoreGalleryResponse(page, section)); },
   changePage: (page) => { dispatch(changePage(page)); },
 });
 

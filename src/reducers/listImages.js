@@ -5,6 +5,7 @@ const initState = {
   page: 0,
   perPage: 20,
   imgurPage: 0,
+  section: 'hot',
 };
 
 
@@ -13,11 +14,20 @@ export default (state = initState, action) => {
     case 'GALLERY_START': {
       return {
         ...state,
+        page: 0,
+        items: [],
+        imgurPage: 0,
+        isLoading: true,
+        section: action.section,
+      };
+    }
+    case 'GALLERY_MORE': {
+      return {
+        ...state,
         isLoading: true,
       };
     }
     case 'GALLERY_SUCCED': {
-      console.log('zaladowalo nowe zapi');
       return {
         ...state,
         isLoading: false,
@@ -32,7 +42,6 @@ export default (state = initState, action) => {
       };
     }
     case 'CHANGE_PAGE': {
-      console.log(action);
       return {
         ...state,
         page: action.page,
