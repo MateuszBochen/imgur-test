@@ -9,7 +9,7 @@ class ImgurImageElement extends Component {
     };
 
     this.buttonStyle = {
-      top: this.calculateTop(),
+      top: '60px',
     };
   }
 
@@ -41,20 +41,6 @@ class ImgurImageElement extends Component {
     }
 
     return <button onClick={() => { this.changeIndex(images.length, 1); }} style={this.buttonStyle} className="imgNavButn right">Right</button>;
-  }
-
-  calculateTop = () => {
-    if (!this.props.images) {
-      return '';
-    }
-
-    let min = 999999;
-    for (let i = 0; i < this.props.images.length; i++) {
-      if (this.props.images[i].height < min) {
-        min = this.props.images[i].height;
-      }
-    }
-    return min / 2;
   }
 
   render() {

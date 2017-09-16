@@ -1,0 +1,44 @@
+.comment-element {
+  margin-bottom: 30px;
+  border-left: solid 1px #dad3d3;
+}
+
+.comment-element .comment-element {
+  margin-top: -1px;
+  margin-bottom: 0px;
+  border-top: #fff;
+  background-color: #fff;
+  padding-top: 10px;
+
+}
+
+.comment-element .comment-top,
+.comment-element .comment-body,
+.comment-element .comment-bottom {
+  padding-left: 10px;
+}
+
+.comment-element .comment-top .author {
+  font-size: 0.9em;
+}
+
+.comment-element .comment-body {
+  padding-bottom: 10px;
+  font-size: 1.2em;
+  border-bottom: solid 1px #dad3d3;
+}
+.comment-element .comment-body.no-border {
+  border-bottom: none;
+}
+
+.comment-element .comment-children {
+
+  padding-left: 20px;
+}
+
+.badge-success {
+  background-color: #5fa55e;
+}
+.badge-danger {
+  background-color: #ca4e4e;
+}

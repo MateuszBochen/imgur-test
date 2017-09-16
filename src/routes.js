@@ -23,7 +23,7 @@ const Routes = () => (
   <Provider store={store} >
     <BrowserRouter>
       <Switch>
-        <Route path="/imgur" component={Imgur} />
+        <Route exact path="/imgur" component={Imgur} />
         <Route path="/" component={MainPage} />
       </Switch>
     </BrowserRouter>

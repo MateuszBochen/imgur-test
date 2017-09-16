@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import TopBar from '../TopBar';
 import ListImages from '../ListImages';
+import ShowImage from '../ShowImage';
 import './style.css';
 // import { getGalleryResponse } from '../actions/mainPage';
 // client id c18c3d4228441e1
@@ -14,7 +15,8 @@ class MainPage extends Component {
         <TopBar />
         <div >
           <Switch>
-            <Route path="/:section?" component={ListImages} />
+            <Route exact path="/image/:imageHash" component={ShowImage} />
+            <Route exact path="/:section?" component={ListImages} />
           </Switch>
         </div>
       </div>

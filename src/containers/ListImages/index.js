@@ -7,10 +7,10 @@ import getCurrentItems from '../../selectors/imgur';
 import './style.css';
 
 class ListImages extends Component {
-  constructor(props) {
-    super(props);
+  componentWillMount() {
     this.props.loadImages(0, this.props.match.params.section || 'hot');
   }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     this.pageHeight = document.documentElement.clientHeight;
