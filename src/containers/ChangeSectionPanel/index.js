@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { getGalleryResponse } from '../../actions/listImages';
 
 class ChangeSectionPanel extends Component {
   render() {
@@ -25,8 +24,4 @@ const mapStateToProps = state => ({
   ...state.listImages,
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadImages: (page, section) => { dispatch(getGalleryResponse(page, section)); },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeSectionPanel);
+export default connect(mapStateToProps)(ChangeSectionPanel);

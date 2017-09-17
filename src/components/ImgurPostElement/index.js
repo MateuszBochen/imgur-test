@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import { ShareButtons, generateShareIcon } from 'react-share';
 import ImgurImageElement from '../ImgurImageElement';
 import ImgurTagElements from '../ImgurTagElements';
 import SocialShare from '../SocialShare';
-
-// const { FacebookShareButton } = ShareButtons;
-// const FacebookIcon = generateShareIcon('facebook');
 
 class ImgurPostElement extends Component {
   crateLink = (title, id) => <Link to={`/image/${id}`}>{title}</Link>
