@@ -14,7 +14,6 @@ export default (state = initState, action) => {
       };
     }
     case 'COMMENTS_SUCCED': {
-      console.log(action.data, 'no kurwa ile razy');
       return {
         ...state,
         isLoading: false,

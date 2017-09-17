@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// import { ShareButtons, generateShareIcon } from 'react-share';
 import ImgurImageElement from '../ImgurImageElement';
 import ImgurTagElements from '../ImgurTagElements';
+import SocialShare from '../SocialShare';
+
+// const { FacebookShareButton } = ShareButtons;
+// const FacebookIcon = generateShareIcon('facebook');
 
 class ImgurPostElement extends Component {
   crateLink = (title, id) => <Link to={`/image/${id}`}>{title}</Link>
@@ -16,6 +21,7 @@ class ImgurPostElement extends Component {
           <span className="badge badge-success" >+ {this.props.item.ups}</span> &nbsp;
           <span className="badge badge-danger">- {this.props.item.downs} </span>
         </div>
+        <SocialShare postUrl={`/image/${this.props.item.id}`} image={this.props.item.link} />
       </Panel>
     );
   }

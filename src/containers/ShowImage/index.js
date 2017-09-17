@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar, Alert } from 'react-bootstrap';
 import { getImageResponse } from '../../actions/showImage';
 import ImgurPostElement from '../../components/ImgurPostElement';
 import Comments from '../Comments';
@@ -15,6 +15,8 @@ class ShowImage extends Component {
   showLoader = () => {
     if (this.props.isLoading === true) {
       return <ProgressBar active now={100} />;
+    } else if (Object.keys(this.props.error).length > 0) {
+      return <Alert bsStyle="danger" ><h4>Coś poszło nie tak!</h4><p>Sprawdź wprowadzone dane i spróbuj ponownie</p></Alert>;
     }
 
     return (

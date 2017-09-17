@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar, Alert } from 'react-bootstrap';
 import { getGalleryResponse, getMoreGalleryResponse, changePage } from '../../actions/listImages';
 import ImgurPostElements from '../../components/ImgurPostElements';
 import getCurrentItems from '../../selectors/imgur';
@@ -17,7 +17,7 @@ class ListImages extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.match.params.section && nextProps.match.params.section !== this.props.section) {
+    if (nextProps.match.params.section && nextProps.match.params.section !== this.props.match.params.section) {
       this.props.loadImages(0, nextProps.match.params.section);
     }
   }
@@ -42,6 +42,8 @@ class ListImages extends Component {
   showLoader = () => {
     if (this.props.isLoading === true) {
       return <ProgressBar active now={100} />;
+    } else if (Object.keys(this.props.error).length > 0) {
+      return <Alert bsStyle="danger" ><h4>Coś poszło nie tak!</h4><p>Sprawdź wprowadzone dane i spróbuj ponownie</p></Alert>;
     }
 
     return '';

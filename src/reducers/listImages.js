@@ -6,6 +6,7 @@ const initState = {
   perPage: 20,
   imgurPage: 0,
   section: 'hot',
+  error: {},
 };
 
 
@@ -16,6 +17,7 @@ export default (state = initState, action) => {
         ...state,
         page: 0,
         items: [],
+        error: {},
         imgurPage: 0,
         isLoading: true,
         section: action.section,
@@ -39,6 +41,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
+        error: action.error,
       };
     }
     case 'CHANGE_PAGE': {

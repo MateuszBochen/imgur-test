@@ -10,8 +10,9 @@ const getImageResponseSucced = data => ({
   data,
 });
 
-const getImageResponseFailed = () => ({
+const getImageResponseFailed = error => ({
   type: 'SHOW_FAILED',
+  error,
 });
 
 const loadData = (dispatch, hash) => {
@@ -20,8 +21,8 @@ const loadData = (dispatch, hash) => {
   axios.get(`https://api.imgur.com/3/gallery/${album}/${hash}`, {}).then((res) => {
     dispatch(getImageResponseSucced(res.data.data));
   })
-    .catch(() => {
-      dispatch(getImageResponseFailed());
+    .catch((error) => {
+      dispatch(getImageResponseFailed(error.response.data));
     });
 };
 

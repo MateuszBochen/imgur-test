@@ -10,8 +10,9 @@ const getGalleryResponseSucced = data => ({
   data,
 });
 
-const getGalleryResponseFailed = () => ({
+const getGalleryResponseFailed = error => ({
   type: 'GALLERY_FAILED',
+  error,
 });
 
 const loadData = (dispatch, page, section) => (
@@ -19,8 +20,8 @@ const loadData = (dispatch, page, section) => (
   axios.get(`https://api.imgur.com/3/gallery/${section}/time/0.json?perPage=42&page=${page}`, {}).then((res) => {
     dispatch(getGalleryResponseSucced(res.data.data));
   })
-    .catch(() => {
-      dispatch(getGalleryResponseFailed());
+    .catch((error) => {
+      dispatch(getGalleryResponseFailed(error.response.data));
     })
 );
 

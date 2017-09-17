@@ -1,6 +1,7 @@
 const initState = {
   isLoading: true,
   item: {},
+  error: {},
 };
 
 export default (state = initState, action) => {
@@ -9,6 +10,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         item: {},
+        error: {},
         isLoading: true,
       };
     }
@@ -23,6 +25,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
+        error: action.error,
       };
     }
     default:

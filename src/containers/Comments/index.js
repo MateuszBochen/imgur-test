@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
+import { Row, Col, ProgressBar } from 'react-bootstrap';
 import { getCommentsResponse } from '../../actions/comments';
 import CommentsList from '../../components/CommentsList';
 
@@ -22,14 +22,12 @@ class Comments extends Component {
 
   render() {
     return (
-      <Grid >
-        <Row>
-          <Col xs={12} >
-            <h2>Komentarze</h2>
-            {this.showLoader()}
-          </Col>
-        </Row>
-      </Grid>
+      <Row>
+        <Col xs={12} >
+          <h2>Komentarze</h2>
+          {this.showLoader()}
+        </Col>
+      </Row>
     );
   }
 }
